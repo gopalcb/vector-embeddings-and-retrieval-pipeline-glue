@@ -1,0 +1,3 @@
+{"question":"What is the refund request deadline?","tenant_id":"demo","groups":["support"],"relevant_doc_ids":["refund-policy"]}
+{"question":"When should I submit a payroll correction?","tenant_id":"demo","groups":["hr"],"relevant_doc_ids":["payroll-policy"]}
+{"question":"Does this policy describe lunar delivery?","tenant_id":"demo","groups":["support"],"relevant_doc_ids":[]}

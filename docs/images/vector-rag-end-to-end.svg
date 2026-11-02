@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+<title id="title">From cleaned documents to authorized evidence</title>
+<desc id="desc">Ingestion validates, chunks, embeds and stores a complete snapshot before publishing completion. Questions use the same embedder, access-filtered retrieval, reranking and selection. The agent tool budgets and cites evidence. Answer generation is a future integration.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#526980" stroke-width="1.8"/></marker></defs>
+<rect width="1600" height="1040" rx="24" fill="#f5f8fc"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="60" y="65" fill="#142d45" font-size="34" font-weight="700">From documents to evidence</text>
+<text x="60" y="102" fill="#526980" font-size="20">Prepare knowledge once per snapshot. Search authorized passages for each question.</text>
+
+<text x="60" y="151" font-size="18" fill="#147d85" font-weight="700">01  BUILD A COMPLETE SNAPSHOT</text>
+<rect x="60" y="175" width="260" height="130" rx="14" fill="white" stroke="#147d85" stroke-width="2"/>
+<text x="80" y="210" font-size="22" fill="#147d85" font-weight="700">Cleaned records</text>
+<text x="80" y="242" font-size="18" fill="#526980" font-weight="400">JSONL text + source IDs</text>
+<text x="80" y="268" font-size="18" fill="#526980" font-weight="400">Tenant + access groups</text>
+<rect x="365" y="175" width="260" height="130" rx="14" fill="white" stroke="#147d85" stroke-width="2"/>
+<text x="385" y="210" font-size="22" fill="#147d85" font-weight="700">Validate + chunk</text>
+<text x="385" y="242" font-size="18" fill="#526980" font-weight="400">Check schema + identities</text>
+<text x="385" y="268" font-size="18" fill="#526980" font-weight="400">200 tokens / 30 overlap</text>
+<rect x="670" y="175" width="260" height="130" rx="14" fill="white" stroke="#147d85" stroke-width="2"/>
+<text x="690" y="210" font-size="22" fill="#147d85" font-weight="700">Embed passages</text>
+<text x="690" y="242" font-size="18" fill="#526980" font-weight="400">MiniLM on CPU</text>
+<text x="690" y="268" font-size="18" fill="#526980" font-weight="400">384-number vectors</text>
+<rect x="975" y="175" width="260" height="130" rx="14" fill="white" stroke="#147d85" stroke-width="2"/>
+<text x="995" y="210" font-size="22" fill="#147d85" font-weight="700">Store a new version</text>
+<text x="995" y="242" font-size="18" fill="#526980" font-weight="400">Qdrant by default</text>
+<text x="995" y="268" font-size="18" fill="#526980" font-weight="400">Text + vectors + metadata</text>
+<rect x="1280" y="175" width="260" height="130" rx="14" fill="white" stroke="#147d85" stroke-width="2"/>
+<text x="1300" y="210" font-size="22" fill="#147d85" font-weight="700">Mark complete</text>
+<text x="1300" y="242" font-size="18" fill="#526980" font-weight="400">Verify stored chunk count</text>
+<text x="1300" y="268" font-size="18" fill="#526980" font-weight="400">Publish atomic manifest</text>
+<path d="M320 240 H353" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M625 240 H658" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M930 240 H963" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M1235 240 H1268" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M1105 305 V360 H800 V440" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="830" y="352" font-size="18" fill="#526980" font-weight="400">Read only a completed version</text>
+<text x="60" y="413" font-size="18" fill="#335ab3" font-weight="700">02  RETRIEVE FOR EACH QUESTION</text>
+<rect x="60" y="440" width="260" height="130" rx="14" fill="white" stroke="#335ab3" stroke-width="2"/>
+<text x="80" y="475" font-size="22" fill="#335ab3" font-weight="700">Question + identity</text>
+<text x="80" y="507" font-size="18" fill="#526980" font-weight="400">Question from the user</text>
+<text x="80" y="533" font-size="18" fill="#526980" font-weight="400">Trusted tenant + groups</text>
+<rect x="365" y="440" width="260" height="130" rx="14" fill="white" stroke="#335ab3" stroke-width="2"/>
+<text x="385" y="475" font-size="22" fill="#335ab3" font-weight="700">Embed question</text>
+<text x="385" y="507" font-size="18" fill="#526980" font-weight="400">Same embedding model</text>
+<text x="385" y="533" font-size="18" fill="#526980" font-weight="400">Same vector space</text>
+<rect x="670" y="440" width="260" height="130" rx="14" fill="white" stroke="#335ab3" stroke-width="2"/>
+<text x="690" y="475" font-size="22" fill="#335ab3" font-weight="700">Filtered retrieval</text>
+<text x="690" y="507" font-size="18" fill="#526980" font-weight="400">Up to 20 candidates</text>
+<text x="690" y="533" font-size="18" fill="#526980" font-weight="400">Tenant AND group access</text>
+<rect x="975" y="440" width="260" height="130" rx="14" fill="white" stroke="#335ab3" stroke-width="2"/>
+<text x="995" y="475" font-size="22" fill="#335ab3" font-weight="700">Rerank candidates</text>
+<text x="995" y="507" font-size="18" fill="#526980" font-weight="400">CrossEncoder compares</text>
+<text x="995" y="533" font-size="18" fill="#526980" font-weight="400">Question + each passage</text>
+<rect x="1280" y="440" width="260" height="130" rx="14" fill="white" stroke="#335ab3" stroke-width="2"/>
+<text x="1300" y="475" font-size="22" fill="#335ab3" font-weight="700">Select evidence</text>
+<text x="1300" y="507" font-size="18" fill="#526980" font-weight="400">Up to 5 passages</text>
+<text x="1300" y="533" font-size="18" fill="#526980" font-weight="400">Keep source references</text>
+<path d="M320 505 H353" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M625 505 H658" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M930 505 H963" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M1235 505 H1268" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="60" y="614" font-size="18" fill="#526980" font-weight="400">Optional OpenSearch: permission-filtered BM25 + vector search, then rank fusion before reranking.</text>
+<path d="M1410 570 V670 H450 V745" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="60" y="713" font-size="18" fill="#147d85" font-weight="700">03  HAND EVIDENCE TO AN AGENT</text>
+<rect x="60" y="745" width="780" height="140" rx="14" fill="white" stroke="#147d85" stroke-width="2"/>
+<text x="80" y="780" font-size="22" fill="#147d85" font-weight="700">Implemented retrieval tool</text>
+<text x="80" y="812" font-size="18" fill="#526980" font-weight="400">Bind identity in application code; the tool accepts only a question.</text>
+<text x="80" y="838" font-size="18" fill="#526980" font-weight="400">Add S1, S2 citations and source URIs. Fit the complete JSON token budget.</text>
+<text x="80" y="864" font-size="18" fill="#526980" font-weight="400">Return evidence_candidates or no_context.</text>
+<path d="M840 815 H1028" fill="none" stroke="#526980" stroke-width="2.5" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="869" y="790" font-size="18" fill="#526980" font-weight="400">Tool result</text>
+<rect x="1040" y="745" width="500" height="140" rx="14" fill="white" stroke="#7a6e92" stroke-width="2" stroke-dasharray="9 6"/>
+<text x="1060" y="780" font-size="22" fill="#7a6e92" font-weight="700">Future answer generation</text>
+<text x="1060" y="812" font-size="18" fill="#526980" font-weight="400">Choose a generation model and connect the tool.</text>
+<text x="1060" y="838" font-size="18" fill="#526980" font-weight="400">Answer with citations; acknowledge missing evidence.</text>
+<text x="1060" y="864" font-size="18" fill="#526980" font-weight="400">Generation is not implemented in this pipeline.</text>
+<rect x="60" y="923" width="1480" height="73" rx="12" fill="#e6edf5"/>
+<text x="80" y="953" font-size="20" fill="#142d45" font-weight="700">A retrieved passage is a candidate, not proof that a question is answerable.</text>
+<text x="80" y="980" font-size="18" fill="#526980" font-weight="400">Fresh snapshots preserve rollback. S3, Bedrock and Glue remain a later migration stage.</text>
+</g></svg>

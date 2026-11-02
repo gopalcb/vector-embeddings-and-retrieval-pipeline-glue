@@ -1,0 +1,177 @@
+{
+  "note": "Toy fixture is a smoke check, not held-out quality evidence. No abstention threshold is calibrated.",
+  "reports": {
+    "vector_only": {
+      "candidate_recall": 1.0,
+      "final_recall": 1.0,
+      "mrr": 1.0,
+      "answerable_questions": 2,
+      "unanswerable_questions": 1,
+      "authorization_violations": 0,
+      "warm_timings_ms": {
+        "embedding": {
+          "p50": 8.82,
+          "p95": 9.47
+        },
+        "search": {
+          "p50": 0.36,
+          "p95": 0.45
+        },
+        "rerank_and_select": {
+          "p50": 0.0,
+          "p95": 0.0
+        }
+      },
+      "queries": [
+        {
+          "question": "What is the refund request deadline?",
+          "candidate": {
+            "recall": 1.0,
+            "mrr": 1.0
+          },
+          "final": {
+            "recall": 1.0,
+            "mrr": 1.0
+          },
+          "selected_doc_ids": [
+            "refund-policy",
+            "delivery-policy"
+          ],
+          "authorization_violations": 0,
+          "timings_ms": {
+            "embedding": 9.47,
+            "search": 0.45,
+            "rerank_and_select": 0.0
+          }
+        },
+        {
+          "question": "When should I submit a payroll correction?",
+          "candidate": {
+            "recall": 1.0,
+            "mrr": 1.0
+          },
+          "final": {
+            "recall": 1.0,
+            "mrr": 1.0
+          },
+          "selected_doc_ids": [
+            "payroll-policy"
+          ],
+          "authorization_violations": 0,
+          "timings_ms": {
+            "embedding": 8.82,
+            "search": 0.36,
+            "rerank_and_select": 0.0
+          }
+        },
+        {
+          "question": "Does this policy describe lunar delivery?",
+          "candidate": {
+            "recall": null,
+            "mrr": null
+          },
+          "final": {
+            "recall": null,
+            "mrr": null
+          },
+          "selected_doc_ids": [
+            "delivery-policy",
+            "refund-policy"
+          ],
+          "authorization_violations": 0,
+          "timings_ms": {
+            "embedding": 6.58,
+            "search": 0.36,
+            "rerank_and_select": 0.0
+          }
+        }
+      ]
+    },
+    "reranked": {
+      "candidate_recall": 1.0,
+      "final_recall": 1.0,
+      "mrr": 1.0,
+      "answerable_questions": 2,
+      "unanswerable_questions": 1,
+      "authorization_violations": 0,
+      "warm_timings_ms": {
+        "embedding": {
+          "p50": 8.92,
+          "p95": 9.22
+        },
+        "search": {
+          "p50": 0.73,
+          "p95": 0.91
+        },
+        "rerank_and_select": {
+          "p50": 15.02,
+          "p95": 17.4
+        }
+      },
+      "queries": [
+        {
+          "question": "What is the refund request deadline?",
+          "candidate": {
+            "recall": 1.0,
+            "mrr": 1.0
+          },
+          "final": {
+            "recall": 1.0,
+            "mrr": 1.0
+          },
+          "selected_doc_ids": [
+            "refund-policy",
+            "delivery-policy"
+          ],
+          "authorization_violations": 0,
+          "timings_ms": {
+            "embedding": 8.92,
+            "search": 0.91,
+            "rerank_and_select": 17.4
+          }
+        },
+        {
+          "question": "When should I submit a payroll correction?",
+          "candidate": {
+            "recall": 1.0,
+            "mrr": 1.0
+          },
+          "final": {
+            "recall": 1.0,
+            "mrr": 1.0
+          },
+          "selected_doc_ids": [
+            "payroll-policy"
+          ],
+          "authorization_violations": 0,
+          "timings_ms": {
+            "embedding": 7.04,
+            "search": 0.39,
+            "rerank_and_select": 15.02
+          }
+        },
+        {
+          "question": "Does this policy describe lunar delivery?",
+          "candidate": {
+            "recall": null,
+            "mrr": null
+          },
+          "final": {
+            "recall": null,
+            "mrr": null
+          },
+          "selected_doc_ids": [
+            "delivery-policy",
+            "refund-policy"
+          ],
+          "authorization_violations": 0,
+          "timings_ms": {
+            "embedding": 9.22,
+            "search": 0.73,
+            "rerank_and_select": 14.58
+          }
+        }
+      ]
+    }
+  }
+}

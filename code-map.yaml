@@ -1,0 +1,167 @@
+project: local-vector-retrieval
+files:
+  "agent_tool.py":
+    purpose: "Trusted-principal tool with exact serialized output budgeting."
+    functions:
+      "make_retrieval_tool":
+        summary: "Bind one trusted principal; only the question is visible in the tool schema."
+      "make_retrieval_tool.search_knowledge":
+        summary: "Search authorized knowledge and return untrusted evidence with citations."
+  "evaluate.py":
+    purpose: "Paired relevance and latency evaluation CLI."
+    functions:
+      "summarize":
+        summary: "Report document metrics, authorization violations and warm stage latency."
+      "evaluate":
+        summary: "Evaluate both rankings, keeping unanswerable examples separate from recall."
+      "main":
+        summary: "Evaluate an explicitly selected completed collection and save its report."
+  "metrics.py":
+    purpose: "Document-level metrics."
+    functions:
+      "unique_doc_ids":
+        summary: "Deduplicate documents while preserving their earliest rank."
+      "recall_and_mrr":
+        summary: "Measure recall and reciprocal rank; empty labels have undefined metrics."
+  "opensearch_store.py":
+    purpose: "Local filtered dense storage and hybrid rank fusion."
+    functions:
+      "OpenSearchStore.__init__":
+        summary: "Restrict this unauthenticated adapter to loopback development."
+      "OpenSearchStore.create_empty":
+        summary: "Create a fresh index; never erase an existing build."
+      "OpenSearchStore.upsert":
+        summary: "Fail on item errors so incomplete writes cannot publish a manifest."
+      "OpenSearchStore.count":
+        summary: "Return the number of searchable chunks."
+      "OpenSearchStore.search":
+        summary: "Apply access restrictions inside approximate nearest neighbor retrieval."
+      "OpenSearchStore.hybrid_search":
+        summary: "Fuse independently permission-filtered lexical and dense ranks."
+      "OpenSearchStore.close":
+        summary: "Release the transport."
+      "access_conditions":
+        summary: "Use identical mandatory access predicates for both query branches."
+      "fuse_ranks":
+        summary: "Combine ranks without comparing incompatible raw score scales."
+  "rag_local.py":
+    purpose: "Versioned ingestion, CPU embeddings, Qdrant, retrieval and CLI."
+    functions:
+      "LocalEmbedder.__init__":
+        summary: "Load the pinned CPU embedding model once per process."
+      "LocalEmbedder.token_count":
+        summary: "Count tokens including special tokens."
+      "LocalEmbedder.encode":
+        summary: "Normalize embeddings and reject oversized inputs."
+      "build_chunks":
+        summary: "Split documents with their embedding tokenizer and retain stable provenance."
+      "LocalStore.__init__":
+        summary: "Open one persistent embedded store; one process owns its directory."
+      "LocalStore.create_empty":
+        summary: "Create a fresh collection without overwriting an older version."
+      "LocalStore.upsert":
+        summary: "Write deterministic points and wait for completion."
+      "LocalStore.count":
+        summary: "Count persisted points exactly."
+      "LocalStore.search":
+        summary: "Find candidates within mandatory tenant and group restrictions."
+      "LocalStore.close":
+        summary: "Release the store lock and client resources."
+      "index_contract":
+        summary: "Identity of the vector space and chunk transformation, not query knobs."
+      "manifest_path":
+        summary: "Locate the backend-specific completion marker."
+      "ingest":
+        summary: "Publish completion only after a full snapshot is written and counted."
+      "Retriever.__init__":
+        summary: "Open only a completed collection matching the requested embedding contract."
+      "Retriever.retrieve":
+        summary: "Retrieve authorized evidence and optionally rerank it with paired token checks."
+      "Retriever.close":
+        summary: "Release the store lock and client resources."
+      "main":
+        summary: "Parse CLI input and run ingestion or retrieval with resource cleanup."
+  "tests/test_adapters.py":
+    purpose: "Verify tool boundaries, evaluation metrics and OpenSearch request contracts."
+    functions:
+      "test_metrics_deduplicate_and_exclude_unanswerable":
+        summary: "Repeated chunks must not inflate document recall or rank."
+      "test_tool_identity_and_exact_budget":
+        summary: "The model chooses only a question; full serialized results fit the budget."
+      "test_opensearch_filter_mapping_and_failure":
+        summary: "Both search branches carry ACL filters and bulk failures propagate."
+      "test_rank_fusion":
+        summary: "A shared result gains rank credit from both branches."
+  "tests/test_evaluate.py":
+    purpose: "Check paired evaluation aggregation without any model downloads."
+    functions:
+      "test_evaluation_excludes_unanswerable_and_compares_modes":
+        summary: "Empty labels stay undefined and both modes use the same trusted queries."
+  "tests/test_lifecycle.py":
+    purpose: "Exercise complete snapshot lifecycle with deterministic model substitutes."
+    functions:
+      "models":
+        summary: "Replace inference only; use real splitting and persistent Qdrant."
+      "source":
+        summary: "Write a complete synthetic snapshot."
+      "test_snapshot_deletion_rollback_and_contract":
+        summary: "A new full snapshot removes old text without changing the old version."
+      "test_failure_never_publishes_completion":
+        summary: "A write failure leaves an unservable build."
+      "test_failure_never_publishes_completion.fail":
+        summary: "Simulate an interrupted write."
+      "test_chunk_ids_and_bounds":
+        summary: "Unicode, code and unspaced content split deterministically within limits."
+      "test_incomplete_point_count_is_not_servable":
+        summary: "A modified completed collection fails its manifest count check."
+  "tests/test_models.py":
+    purpose: "Opt-in CPU integration tests requiring the pinned downloaded model weights."
+    functions:
+      "test_real_tokenizers_and_retrieval":
+        summary: "Verify real splitting, paired limits, ranking, persistence and ACL boundaries."
+  "tests/test_opensearch_live.py":
+    purpose: "Opt-in integration contracts against an isolated local OpenSearch instance."
+    functions:
+      "test_live_engine_access_persistence_and_hybrid":
+        summary: "Identical vectors cannot bypass filters in dense or hybrid search."
+  "tests/test_pipeline.py":
+    purpose: "Verify snapshot validation and persistent tenant/group filtering."
+    functions:
+      "record":
+        summary: "Build a source record, preserving explicitly empty groups for rejection tests."
+      "test_duplicate_document_identity_fails_before_indexing":
+        summary: "Reject repeated document identities during complete-snapshot validation."
+      "test_missing_permissions_are_rejected":
+        summary: "Reject source records without explicit access groups."
+      "test_filtering_and_persistence":
+        summary: "Preserve idempotent writes and access filtering after reopening the store."
+  "tests_support.py":
+    purpose: "Deterministic inference substitutes for tests."
+    functions:
+      "FakeTokenizer.encode":
+        summary: "Return one synthetic token per character."
+      "FakeTokenizer.tokenize":
+        summary: "Support the splitter's Hugging Face token-count interface."
+      "FakeEmbedder.__init__":
+        summary: "Accept the same configuration as the real embedder."
+      "FakeEmbedder.token_count":
+        summary: "Count synthetic tokens."
+      "FakeEmbedder.encode":
+        summary: "Return deterministic unit vectors."
+      "FakeReranker.__init__":
+        summary: "Accept the real reranker's model options."
+      "FakeReranker.predict":
+        summary: "Assign deterministic descending scores."
+  "validation.py":
+    purpose: "Input, identity and configuration contracts."
+    functions:
+      "CleanDocument.reject_blank":
+        summary: "Reject whitespace-only source values."
+      "CleanDocument.validate_groups":
+        summary: "Reject blank permissions and deduplicate group names."
+      "Config.__post_init__":
+        summary: "Validate storage selection and numeric pipeline limits."
+      "read_documents":
+        summary: "Validate the complete small input before modifying the vector store."
+      "validate_question":
+        summary: "Reject blank or oversized questions before running inference."

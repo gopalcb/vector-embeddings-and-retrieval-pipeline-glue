@@ -1,0 +1,7 @@
+qdrant-client
+sentence-transformers
+langchain-text-splitters
+langchain-core
+pydantic
+pytest
+opensearch-py
